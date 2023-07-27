@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+ <head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI性格测试</title>
+    <style>
+        /* CSS样式部分 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .welcome-text {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .language-selector {
+            margin-bottom: 20px;
+        }
+
+        .language-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .start-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .test-container {
+            display: none;
+        }
+
+        .question {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .answer-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .answer {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .result-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .result {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .restart-button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    </style>
+   
+</head>
+
+<body>
+  
+    <div class="container">
+    <h1 class="title">MBTI性格测试</h1>
+    <p class="welcome-text" data-lang="zh">欢迎来到MBTI性格测试！了解自己的性格特点，发现更好的自我。</p>
+    <p class="welcome-text" data-lang="en">Welcome to the MBTI Personality Test! Discover your personality traits and find a better understanding of yourself.</p>
+    <p class="welcome-text" data-lang="ko">MBTI 성격 테스트에 오신 것을 환영합니다! 자신의 성격 특성을 발견하고 더 나은 자아를 찾아보세요。</p>
+    <div class="language-selector">
+        <button class="language-button" onclick="showLanguage('zh')">中文</button>
+        <button class="language-button" onclick="showLanguage('en')">English</button>
+        <button class="language-button" onclick="showLanguage('ko')">한국어</button>
+    </div>
+    <button class="start-button" onclick="startTest()">开始测试</button>
+
+    <!-- 测试页面部分 -->
+    <div class="test-container">
+        <!-- 问题1 -->
+        <div class="question" data-lang="zh">问题1：您更喜欢独自阅读书籍，还是和朋友一起参加派对？</div>
+        <div class="question" data-lang="en">Question 1: Do you prefer reading books alone or attending parties with friends?</div>
+        <div class="question" data-lang="ko">질문 1: 혼자 책을 읽는 것을 선호하시나요, 아니면 친구들과 파티에 참석하시나요？</div>
+        <div class="answer-container">
+            <div class="answer" onclick="selectAnswer('E', 0)">A. 独自阅读书籍</div>
+            <div class="answer" onclick="selectAnswer('I', 0)">B. 和朋友一起参加派对</div>
+        </div>
+
+        <!-- 更多问题和答案 -->
+        <!-- 问题2 -->
+        <div class="question" data-lang="zh">问题2：在社交场合中，您更倾向于主动和陌生人交流，还是静静地聆听他人的谈话？</div>
+        <div class="question" data-lang="en">Question 2: In social situations, do you prefer initiating conversations with strangers or quietly listening to others?</div>
+        <div class="question" data-lang="ko">질문 2: 사회적인 상황에서는, 낯선 사람들과 대화를 시작하는 것을 선호하시나요, 아니면 조용히 다른 사람들을 듣는 것을 좋아하시나요？</div>
+        <div class="answer-container">
+            <div class="answer" onclick="selectAnswer('E', 1)">A. 主动和陌生人交流</div>
+            <div class="answer" onclick="selectAnswer('I', 1)">B. 静静地聆听他人的谈话</div>
+        </div>
+        <!-- 问题3 -->
+        <div class="question" data-lang="zh">问题3：您倾向于通过仔细计划和组织来完成任务，还是更喜欢随遇而安，顺其自然？</div>
+        <div class="question" data-lang="en">Question 3: Do you prefer to accomplish tasks through careful planning and organization, or do you prefer to go with the flow and see where it takes you?</div>
+        <div class="question" data-lang="ko">질문 3: 과제를 처리할 때, 신중한 계획과 조직으로 수행하시나요, 아니면 주어진 상황에 따라 유연하게 대처하시나요？</div>
+        <div class="answer-container">
+            <div class="answer" onclick="selectAnswer('J', 2)">A. 仔细计划和组织</div>
+            <div class="answer" onclick="selectAnswer('P', 2)">B. 随遇而安，顺其自然</div>
+        </div>
+        <!-- 问题4 -->
+        <div class="question" data-lang="zh">问题4：在面对困难时，您更倾向于独自解决，还是寻求他人的帮助与支持？</div>
+        <div class="question" data-lang="en">Question 4: When facing difficulties, do you prefer to solve them on your own or seek help and support from others?</div>
+        <div class="question" data-lang="ko">질문 4: 어려움에 직면했을 때, 혼자 해결하는 것을 선호하시나요, 아니면 다른 사람들로부터 도움과 지원을 구하시나요？</div>
+        <div class="answer-container">
+            <div class="answer" onclick="selectAnswer('I', 3)">A. 独自解决</div>
+            <div class="answer" onclick="selectAnswer('E', 3)">B. 寻求他人的帮助与支持</div>
+        </div>
+        <!-- 问题5 -->
+        <div class="question" data-lang="zh">问题5：您倾向于直接坦率地表达自己的意见，还是更喜欢保留自己的观点，避免冲突？</div>
+        <div class="question" data-lang="en">Question 5: Do you prefer to express your opinions directly and honestly, or do you prefer to keep your views to yourself to avoid conflicts?</div>
+        <div class="question" data-lang="ko">질문 5: 직접적이고 솔직하게 의견을 표현하시나요, 아니면 갈등을 피하기 위해 자신의 견해를 숨기시나요？</div>
+        <div class="answer-container">
+            <div class="answer" onclick="selectAnswer('E', 
+        <!-- 更多问题和答案 -->
+        <!-- 问题6 -->
+        <div class="question" data-lang="zh">问题6：您更喜欢按部就班、稳步前进，还是喜欢追求新奇和刺激？</div>
+        <div class="question" data-lang="en">Question 6: Do you prefer to take things step by step and steadily move forward, or do you seek novelty and excitement?</div>
+        <div class="question" data-lang="ko">질문 6: 당신은 차분하게 한 걸음씩 나아가기를 선호하시나요, 아니면 새로움과 흥미를 추구하시나요？</div>
+        <div class="answer-container">
+            <div class="answer" onclick="selectAnswer('J', 4)">A. 按部就班、稳步前进</div>
+            <div class="answer" onclick="selectAnswer('P', 4)">B. 追求新奇和刺激</div>
+        </div>
+        <!-- 问题7 -->
+        <div class="question" data-lang="zh">问题7：您在社交场合中更倾向于成为注意的焦点，还是保持低调？</div>
+        <div class="question" data-lang="en">Question 7: In social situations, do you prefer to be the center of attention or remain low-key?</div>
+        <div class="question" data-lang="ko">질문 7: 사회적인 상황에서 주목받는 쪽이 되는 것을 선호하시나요, 아니면 눈에 띄지 않기를 좋아하시나요？</div>
+        <div class="answer-container">
+            <div class="answer" onclick="selectAnswer('E', 5)">A. 成为注意的焦点</div>
+            <div class="answer" onclick="selectAnswer('I', 5)">B. 保持低调</div>
+        </div>
+        <!-- 问题8 -->
+        <!-- ... (继续添加问题和答案) ... -->
+        <!-- 问题20 -->
+        <div class="question" data-lang="zh">问题20：您在工作中更注重事实和细节，还是更加关注未来的可能性和发展方向？</div>
+        <div class="question" data-lang="en">Question 20: In your work, do you pay more attention to facts and details or focus on future possibilities and development?</div>
+        <div class="question" data-lang="ko">질문 20: 귀하는 근로 활동에서 사실과 세부사항에 더 주목하시나요, 아니면 미래의 가능성과 발전 방향에 초점을 맞추시나요？</div>
+        <div class="answer-container">
+            <div class="answer" onclick="selectAnswer('S', 19)">A. 注重事实和细节</div>
+            <div class="answer" onclick="selectAnswer('N', 19)">B. 关注未来的可能性和发展方向</div>
+        </div>
+    </div>
+        <script>
+    // JavaScript部分
+    let currentQuestion = 0;
+    let answers = [];
+
+    function showLanguage(lang) {
+        const elements = document.querySelectorAll("[data-lang]");
+        elements.forEach((element) => {
+            if (element.getAttribute("data-lang") === lang) {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        });
+    }
+
+    function startTest() {
+        document.querySelector(".welcome-text").style.display = "none";
+        document.querySelector(".language-selector").style.display = "none";
+        document.querySelector(".start-button").style.display = "none";
+        document.querySelector(".test-container").style.display = "block";
+        showQuestion(currentQuestion);
+    }
+
+    function showQuestion(index) {
+        const questions = document.querySelectorAll(".question");
+        questions.forEach((question, i) => {
+            if (i === index) {
+                question.style.display = "block";
+            } else {
+                question.style.display = "none";
+            }
+        });
+    }
+
+    function selectAnswer(type, index) {
+        answers[index] = type;
+        currentQuestion++;
+        if (currentQuestion < 20) {
+            showQuestion(currentQuestion);
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        document.querySelector(".test-container").style.display = "none";
+        document.querySelector(".result-container").style.display = "block";
+
+        const resultType = calculateResultType();
+        const resultDescription = getResultDescription(resultType);
+
+        document.getElementById("result-type").innerText = resultType;
+        document.getElementById("result-description").innerText = resultDescription;
+    }
+
+    function calculateResultType() {
+        // 在这里根据答案计算MBTI类型
+        // 简单起见，这里只是返回一个默认类型
+        return "ISTJ";
+    }
+
+    function getResultDescription(type) {
+        // 在这里根据类型返回相应的人格文案
+        // 简单起见，这里只是返回一个默认文案
+        return "您是ISTJ类型，这是一个保守、负责任且坚定的类型。";
+    }
+
+    function restartTest() {
+        currentQuestion = 0;
+        answers = [];
+
+        document.querySelector(".test-container").style.display = "block";
+        document.querySelector(".result-container").style.display = "none";
+        showQuestion(currentQuestion);
+    }
+</script>
+    <!-- 结果页面部分 -->
+    <div class="result-container">
+        <div class="result" data-lang="zh">
+            您的MBTI性格类型是：<span id="result-type"></span>
+        </div>
+        <div class="result" data-lang="en">
+            Your MBTI personality type is: <span id="result-type"></span>
+        </div>
+        <div class="result" data-lang="ko">
+            당신의 MBTI 성격 유형은: <span id="result-type"></span>
+        </div>
+        <p class="result" data-lang="zh" id="result-description"></p>
+        <p class="result" data-lang="en" id="result-description"></p>
+        <p class="result" data-lang="ko" id="result-description"></p>
+        <button class="restart-button" onclick="restartTest()">重新开始</button>
+    </div>
+ </div>
+
+</body>
+
+</html>
+                        
